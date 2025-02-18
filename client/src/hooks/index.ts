@@ -1,0 +1,1 @@
+export { useLandingGeneratorHook } from "./useLandingGeneratorHook";

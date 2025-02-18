@@ -7,7 +7,7 @@ interface Landing {
   image: string;
 }
 
-const LandingGenerator = () => {
+export const useLandingGeneratorHook = () => {
   const [input, setInput] = useState<string>("");
   const [output, setOutput] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -70,68 +70,16 @@ const LandingGenerator = () => {
     link.click();
   };
 
-  return (
-    <div className="flex flex-col md:flex-row gap-6 p-6 max-w-6xl mx-auto">
-      <div className="md:w-1/3 bg-white p-4 shadow-md rounded-lg">
-        <h1 className="text-xl font-bold mb-2">Generador de Landing Pages</h1>
-        <input
-          type="text"
-          className="w-full p-8 border rounded"
-          placeholder="Tema de la landing..."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-        <button
-          onClick={handleGenerate}
-          className="mt-2 ml-4 w-full bg-blue-500 text-white px-4 py-2 rounded"
-          disabled={loading}
-        >
-          {loading ? "Generando..." : "Generar"}
-        </button>
-      </div>
+  return {
+    input,
+    output,
+    image,
+    savedLandings,
+    loading,
 
-      <div className="md:w-2/3 bg-gray-100 p-4 shadow-md rounded-lg">
-        <h2 className="text-lg font-semibold mb-2">Previsualización</h2>
-        {output ? (
-          <div className="border p-4 bg-white rounded shadow-lg">
-            {image && (
-              <img
-                src={image}
-                alt="Generated"
-                className="w-full h-64 object-cover rounded-md"
-              />
-            )}
-            <div className="p-4">
-              <h1 className="text-3xl font-bold text-blue-600">{input}</h1>
-              <p className="mt-2 text-gray-700">{output}</p>
-              <a
-                href="#"
-                className="mt-4 bg-blue-500 text-white px-6 py-2 rounded-full inline-block text-lg shadow-md hover:bg-blue-600"
-              >
-                Más Información
-              </a>
-            </div>
-            <button
-              onClick={handleSaveLanding}
-              className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
-            >
-              Guardar
-            </button>
-            <button
-              onClick={handleExportHTML}
-              className="mt-2 bg-gray-500 text-white px-4 py-2 rounded ml-2"
-            >
-              Exportar HTML
-            </button>
-          </div>
-        ) : (
-          <p className="text-gray-500">
-            El contenido generado aparecerá aquí...
-          </p>
-        )}
-      </div>
-    </div>
-  );
+    setInput,
+    handleGenerate,
+    handleSaveLanding,
+    handleExportHTML,
+  };
 };
-
-export default LandingGenerator;

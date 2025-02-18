@@ -1,4 +1,4 @@
-import LandingGenerator from "./components/LandingGenerator";
+import LandingGenerator from "./pages/LandingGenerator";
 
 function App() {
   return (
