@@ -1,10 +1,15 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 import LandingGenerator from "./pages/LandingGenerator";
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <LandingGenerator />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/generator" element={<LandingGenerator />} />
+      </Routes>
+    </Router>
   );
 }
 
