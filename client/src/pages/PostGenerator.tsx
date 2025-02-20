@@ -35,15 +35,18 @@ const PostGenerator = observer(() => {
         </div>
       ) : (
         <div>
-          {posts?.map((post: any, index: any) => (
-            <div
-              key={index}
-              onClick={() => openEditorForPost(post)}
-            >
-              <h3>{post?.title || `Post ${index + 1}`}</h3>
-              {post.description && <p>{post.description}</p>}
-            </div>
-          ))}
+          {posts?.map((post: any, index: any) => {
+            console.log({ post });
+            return (
+              <div
+                key={index}
+                onClick={() => openEditorForPost(post)}
+              >
+                <h3>{post?.pages[0]?.title}</h3>
+                <p>{post?.pages[0]?.description}</p>
+              </div>
+            );
+          })}
         </div>
       )}
       {selectedPost && (
