@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { PolotnoEditor } from "../components/PolotnoEditor";
 import { usePostGeneratorHook } from "../hooks";
-
+import styles from "./styles/PostGenerator.module.css";
 const PostGenerator = observer(() => {
   const {
     posts,
@@ -40,10 +40,13 @@ const PostGenerator = observer(() => {
             return (
               <div
                 key={index}
+                className={styles.card}
                 onClick={() => openEditorForPost(post)}
               >
-                <h3>{post?.pages[0]?.title}</h3>
-                <p>{post?.pages[0]?.description}</p>
+                <h3 className={styles.title}>{post?.pages[0]?.title}</h3>
+                <p className={styles.description}>
+                  {post?.pages[0]?.description}
+                </p>
               </div>
             );
           })}
