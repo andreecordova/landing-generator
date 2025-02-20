@@ -20,6 +20,18 @@ const Home = () => {
         >
           Generador de Landings
         </NavLink>
+        <NavLink
+          to="/post-generator"
+          className={({ isActive }) =>
+            `px-4 py-2 rounded-lg transition-all ${
+              isActive
+                ? "bg-blue-600 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`
+          }
+        >
+          Generador de Posts para redes sociales
+        </NavLink>
       </nav>
     </div>
   );
