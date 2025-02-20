@@ -1,6 +1,5 @@
-// Custom Hooks
+// LandingGenerator.tsx
 import { useLandingGeneratorHook } from "../hooks";
-// Sections
 import { Generator } from "../sections/Generator";
 import { Preview } from "../sections/Preview";
 
@@ -17,15 +16,14 @@ const LandingGenerator = () => {
   } = useLandingGeneratorHook();
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 p-6 max-w-6xl mx-auto">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <Generator
         input={input}
         loading={loading}
         setInput={setInput}
         handleGenerate={handleGenerate}
       />
-
-      {!!output ? (
+      {output && (
         <Preview
           output={output}
           image={image}
@@ -33,7 +31,7 @@ const LandingGenerator = () => {
           handleSaveLanding={handleSaveLanding}
           handleExportHTML={handleExportHTML}
         />
-      ) : null}
+      )}
     </div>
   );
 };

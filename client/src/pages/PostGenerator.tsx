@@ -16,20 +16,18 @@ const PostGenerator = observer(() => {
   } = usePostGeneratorHook();
 
   return (
-    <div className='flex flex-col gap-6 p-6 max-w-6xl'>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <h1>Generador de post para redes sociales</h1>
+
       {posts?.length === 0 ? (
         <div>
           <input
-            type='text'
+            type="text"
             value={userPrompt}
             onChange={(e) => setUserPrompt(e.target.value)}
-            placeholder='Ingresa el tema de tus posts'
+            placeholder="Ingresa el tema de tus posts"
           />
-          <button
-            onClick={handleGenerate}
-            disabled={loading}
-          >
+          <button onClick={handleGenerate} disabled={loading}>
             {loading ? "Generando..." : "Generar posts"}
           </button>
         </div>
@@ -53,10 +51,7 @@ const PostGenerator = observer(() => {
         </div>
       )}
       {selectedPost && (
-        <PolotnoEditor
-          store={store}
-          onClose={() => setSelectedPost(null)}
-        />
+        <PolotnoEditor store={store} onClose={() => setSelectedPost(null)} />
       )}
     </div>
   );
