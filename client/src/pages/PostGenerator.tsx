@@ -23,14 +23,7 @@ const PostGenerator = observer(() => {
           <h1 className='text-2xl font-bold text-gray-800 mb-4 text-center'>
             Generador de post para redes sociales
           </h1>
-          <div className='flex mb-4'>
-            <Link
-              to='/'
-              className={`${styles.content_generator_button_goback} px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition-all`}
-            >
-              Volver al Inicio
-            </Link>
-          </div>
+          
 
           {posts?.length === 0 ? (
             <div className='flex flex-col gap-3'>
@@ -43,7 +36,7 @@ const PostGenerator = observer(() => {
               />
               <button
                 onClick={handleGenerate}
-                className={`w-full p-3 rounded-lg text-white transition-all ${
+                className={`w-full p-3 rounded-lg text-white transition-all ${styles.content_generator_button_generator} ${
                   loading
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-500 hover:bg-blue-600"
@@ -86,6 +79,15 @@ const PostGenerator = observer(() => {
               onClose={() => setSelectedPost(null)}
             />
           )}
+
+          <div className='flex mt-4'>
+            <Link
+              to='/'
+              className={`${styles.content_generator_button_goback} px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition-all`}
+            >
+              Volver al Inicio
+            </Link>
+          </div>
         </div>
       </div>
     </div>

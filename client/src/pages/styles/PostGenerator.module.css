@@ -73,3 +73,23 @@
   background-color: var(--secundary-color);
   color: #fff;
 }
+
+.content_generator_button_generator{
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  color: var(--secundary-color);
+  font-size: 16px;
+  font-weight: 500;
+  border: solid 1px var(--secundary-color);
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.content_generator_button_generator:hover{
+  text-decoration: none;
+  background-color: var(--secundary-color);
+  color: #fff;
+}
