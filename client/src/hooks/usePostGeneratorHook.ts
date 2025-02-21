@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { generatePostsForIG } from "../api/openai";
 import { createStore } from "polotno/model/store";
 import { unprotect } from "mobx-state-tree";
+import { api } from "../api/api";
 
 export const usePostGeneratorHook = () => {
   const [userPrompt, setUserPrompt] = useState<string>("");
@@ -22,9 +23,18 @@ export const usePostGeneratorHook = () => {
   );
 
   const store = storeRef.current;
-  const json = store.toJSON();
-  console.log({json})
-  // Manejar la generación de posts
+  const savePostInfo = async() =>{ 
+    
+    const json = store.toJSON();
+    const jsonString = JSON.stringify(json); 
+    console.log(jsonString, 'jsonString');
+    try {
+      const res = await api.post("/posts", { json });
+      console.log(res,'res')
+    } catch (error) {
+      console.log("Error al guardar la landing:", error);
+    }
+  }
   const handleGenerate = async () => {
     setLoading(true);
     try {
@@ -38,6 +48,7 @@ export const usePostGeneratorHook = () => {
     }
   };
 
+  
   // Función para abrir el editor con un post seleccionado
   const openEditorForPost = (post: any) => {
     console.log("Abriendo editor...");
@@ -120,5 +131,6 @@ export const usePostGeneratorHook = () => {
     selectedPost,
     setSelectedPost,
     openEditorForPost,
+    savePostInfo
   };
 };

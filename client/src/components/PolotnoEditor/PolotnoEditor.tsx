@@ -11,9 +11,14 @@ import styles from "./editor.module.css";
 interface Props {
   store: any;
   onClose: () => void;
+  savePostInfo: () => void;
 }
 
-export const PolotnoEditor: React.FC<Props> = ({ store, onClose }) => {
+export const PolotnoEditor: React.FC<Props> = ({
+  store,
+  onClose,
+  savePostInfo,
+}) => {
   const [isOpen, setIsOpen] = useState(true); // Estado interno del modal
 
   if (!isOpen) return null;
@@ -29,6 +34,12 @@ export const PolotnoEditor: React.FC<Props> = ({ store, onClose }) => {
           }}
         >
           ✖
+        </button>
+        <button
+          className={styles.saveButton}
+          onClick={savePostInfo}
+        >
+          save
         </button>
 
         <div className={styles.containerEditor}>

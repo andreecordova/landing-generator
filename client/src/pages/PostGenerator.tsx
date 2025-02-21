@@ -14,6 +14,7 @@ const PostGenerator = observer(() => {
     handleGenerate,
     store,
     openEditorForPost,
+    savePostInfo,
   } = usePostGeneratorHook();
 
   return (
@@ -75,6 +76,7 @@ const PostGenerator = observer(() => {
           {selectedPost && (
             <PolotnoEditor
               store={store}
+              savePostInfo={savePostInfo}
               onClose={() => setSelectedPost(null)}
             />
           )}
