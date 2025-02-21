@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-6">
-        Bienvenido al Generador de Landings
-      </h1>
+      <h1 className="text-3xl font-bold mb-6">Bienvenido a ASAPTemplate</h1>
 
       <nav className="space-x-4">
         <NavLink
