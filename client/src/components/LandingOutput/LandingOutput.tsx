@@ -1,4 +1,5 @@
 import React from "react";
+import { LandingSkeleton } from "../Skeletons";
 
 interface Props {
   output: string;

@@ -1,6 +1,7 @@
 // Preview.tsx
 import React from "react";
 import { LandingOutput } from "../../components/LandingOutput";
+import { LandingSkeleton } from "../../components/Skeletons";
 
 interface Props {
   handleSaveLanding: () => void;
@@ -18,6 +19,7 @@ export const Preview: React.FC<Props> = ({
       <h2 className='text-lg font-semibold mb-4 text-center'>
         Previsualización
       </h2>
+      <LandingSkeleton />
       {savedLandings?.map(({ content, image, title }: any) => (
         <LandingOutput
           output={content}
