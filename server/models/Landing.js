@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const LandingSchema = new Schema({
-  title: {
+  prompt: {
     type: String,
     required: true,
   },

@@ -1,5 +1,4 @@
 import React from "react";
-import { LandingSkeleton } from "../Skeletons";
 
 interface Props {
   output: string;
@@ -37,23 +36,11 @@ export const LandingOutput: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Contenido generado */}
       <div className='p-4 text-center'>
         <h1 className='text-3xl font-bold text-blue-600'>{input}</h1>
         <p className='mt-2 text-gray-700 leading-relaxed'>{output}</p>
       </div>
 
-      {/* Botón de acción principal */}
-      <div className='mt-4 flex justify-center'>
-        <a
-          href='#'
-          className='bg-blue-500 text-white px-6 py-2 rounded-full text-lg shadow-md hover:bg-blue-600 transition-all'
-        >
-          Más Información
-        </a>
-      </div>
-
-      {/* Acciones secundarias */}
       <div className='mt-4 flex justify-center gap-4'>
         <button
           onClick={handleSaveLanding}
@@ -68,6 +55,7 @@ export const LandingOutput: React.FC<Props> = ({
           Exportar HTML
         </button>
       </div>
+      <div className='mt-4 flex justify-center gap-4'></div>
     </div>
   );
 };

@@ -22,11 +22,11 @@ const LandingGenerator = () => {
         setInput={setInput}
         handleGenerate={handleGenerate}
       />
-
       <Preview
         handleSaveLanding={handleSaveLanding}
         savedLandings={savedLandings}
         handleExportHTML={handleExportHTML}
+        loading={loading}
       />
     </div>
   );
