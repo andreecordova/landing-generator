@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { generateLandingContent, generateImage } from "../api/openai";
+import { api } from "../api/api";
 
 interface Landing {
+  _id: string;
   title: string;
   content: string;
   image: string;
@@ -14,6 +16,22 @@ export const useLandingGeneratorHook = () => {
   const [savedLandings, setSavedLandings] = useState<Landing[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const fetchLandings = async () => {
+    try {
+      const res = await api.get("/landings");
+      setSavedLandings(res.data); // Guardar en el estado
+    } catch (error) {
+      console.error("Error al obtener las landings:", error);
+    }
+  };
+
+  // Cargar landings al montar el componente
+  useEffect(() => {
+    fetchLandings();
+  }, []);
+
+  console.log(savedLandings,'savedLandings');
+  
   const handleGenerate = async () => {
     if (!input) return;
     setLoading(true);
@@ -28,14 +46,30 @@ export const useLandingGeneratorHook = () => {
       `Imagen atractiva para una landing page sobre ${input}`
     );
 
+    const newLanding = {
+      _id: Date.now().toString(), 
+      title: input,
+      content: content || "No se pudo generar contenido.",
+      image: imgUrl,
+    };
+    
+    setSavedLandings((prevLandings) => [newLanding, ...prevLandings]);
+
+    console.log(imgUrl,'imgurl')
     setImage(imgUrl);
 
     setLoading(false);
   };
 
-  const handleSaveLanding = () => {
-    const newLanding = { title: input, content: output, image };
-    setSavedLandings([...savedLandings, newLanding]);
+  
+  // Ahora usarla es más limpio y corto:
+  const handleSaveLanding = async () => {
+    try {
+     const res = await api.post("/landings", { title: input, content: output, image });
+     console.log(res,'res')
+    } catch (error) {
+      console.log("Error al guardar la landing:", error);
+    }
   };
 
   const handleExportHTML = () => {
