@@ -2,8 +2,8 @@ const Landing = require("../models/Landing");
 
 const saveLanding = async (req, res) => {
   try {
-    const { title, content, image } = req.body;
-    const newLanding = new Landing({ title, content, image });
+    const { content, image,prompt } = req.body;
+    const newLanding = new Landing({ content, image, prompt });
     await newLanding.save();
     res.status(201).json(newLanding);
   } catch (error) {

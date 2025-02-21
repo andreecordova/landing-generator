@@ -22,5 +22,3 @@ export const LandingSkeleton = () => {
     </div>
   );
 };
-
-export default LandingSkeleton;

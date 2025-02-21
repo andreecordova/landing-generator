@@ -65,7 +65,7 @@ export const useLandingGeneratorHook = () => {
   // Ahora usarla es más limpio y corto:
   const handleSaveLanding = async () => {
     try {
-     const res = await api.post("/landings", { title: input, content: output, image });
+     const res = await api.post("/landings", { prompt: input, content: output, image});
      console.log(res,'res')
     } catch (error) {
       console.log("Error al guardar la landing:", error);
