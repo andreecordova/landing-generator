@@ -13,8 +13,12 @@ const Home = () => {
       </h1>
 
       <p className="text-lg font-bold text-gray-600">
-        Genera plantillas rápidas, impacto inmediato.
+        Plantillas rápidas, impacto inmediato.
       </p>
+
+      <h4 className="text-lg font-bold text-gray-600">
+        Genera landing de contenido y post para redes sociales de manera rápida y automatizada.
+      </h4>
 
         <nav className="space-x-4 mt-4">
           <NavLink
