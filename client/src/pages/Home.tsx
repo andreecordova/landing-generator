@@ -3,9 +3,14 @@ import { NavLink } from "react-router-dom";
 const Home = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold mb-6">Bienvenido a ASAPTemplate</h1>
+      <h1 className="text-3xl font-bold mb-2 text-gray-800">
+        Bienvenido a <span className="text-blue-600">ASAPTemplate</span>
+      </h1>
+      <p className="text-lg font-bold text-gray-600">
+        Plantillas rápidas, impacto inmediato.
+      </p>
 
-      <nav className="space-x-4">
+      <nav className="space-x-4 mt-4">
         <NavLink
           to="/generator"
           className={({ isActive }) =>
