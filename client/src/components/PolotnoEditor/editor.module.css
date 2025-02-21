@@ -37,10 +37,11 @@
       right: 40px;
       padding: 8px 12px;
       cursor: pointer;
-      background: white;
+      background: rgb(158, 158, 158);
       border: none;
       font-size: 18px;
       z-index: 1000;
+      pointer-events: none;
 
     
   }
