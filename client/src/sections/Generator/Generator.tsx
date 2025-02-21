@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./styles.module.css";
 
 interface Props {
   input: string;
@@ -21,15 +22,6 @@ export const Generator: React.FC<Props> = ({
           Generador de Landing Pages
         </h1>
 
-        <div className="flex justify-center mb-4">
-          <Link
-            to="/"
-            className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition-all"
-          >
-            Volver al Inicio
-          </Link>
-        </div>
-
         <div className="flex flex-col gap-3">
           <input
             type="text"
@@ -39,17 +31,30 @@ export const Generator: React.FC<Props> = ({
             onChange={(e) => setInput(e.target.value)}
           />
 
-          <button
-            onClick={handleGenerate}
-            className={`w-full p-3 rounded-lg text-white transition-all ${
-              loading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600"
-            }`}
-            disabled={loading}
-          >
-            {loading ? "Generando..." : "Generar"}
-          </button>
+          <div className={styles.content_generator_buttons}>
+            <div className="flex justify-center">
+              <Link
+                to="/"
+                className={`${styles.content_generator_button_goback} px-4 py-2 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-300 transition-all`}
+              >
+
+                Volver al Inicio
+              </Link>
+            </div>
+
+            <button
+              onClick={handleGenerate}
+              className={`${styles.content_generator_button_save} w-full p-3 rounded-lg text-white transition-all ${
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-500 hover:bg-blue-600"
+              }`}
+              disabled={loading}
+            >
+              {loading ? "Generando..." : "Generar"}
+            </button>
+          </div>
+
         </div>
       </div>
     </div>

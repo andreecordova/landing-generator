@@ -5,7 +5,9 @@ const Home = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-6">Bienvenido a ASAPTemplate</h1>
 
-      <nav className="space-x-4">
+      <p className="font-bold">Frase. Plantillas rápidas, impacto inmediato</p>
+
+      <nav className="space-x-4 mt-4">
         <NavLink
           to="/generator"
           className={({ isActive }) =>
