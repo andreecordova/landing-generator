@@ -30,7 +30,20 @@
     font-size: 18px;
     z-index: 1000;
   }
-  
+  .saveButton {
+   
+      position: absolute;
+      top: -30px;
+      right: 40px;
+      padding: 8px 12px;
+      cursor: pointer;
+      background: white;
+      border: none;
+      font-size: 18px;
+      z-index: 1000;
+
+    
+  }
   .containerEditor {
     width: 100%;
     height: 100%;

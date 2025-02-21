@@ -19,6 +19,10 @@ export const useLandingGeneratorHook = () => {
   const fetchLandings = async () => {
     try {
       const res = await api.get("/landings");
+      console.log({
+        res,
+      });
+
       setSavedLandings(res.data); // Guardar en el estado
     } catch (error) {
       console.error("Error al obtener las landings:", error);
@@ -30,8 +34,8 @@ export const useLandingGeneratorHook = () => {
     fetchLandings();
   }, []);
 
-  console.log(savedLandings,'savedLandings');
-  
+  console.log(savedLandings, "savedLandings");
+
   const handleGenerate = async () => {
     if (!input) return;
     setLoading(true);
@@ -47,26 +51,29 @@ export const useLandingGeneratorHook = () => {
     );
 
     const newLanding = {
-      _id: Date.now().toString(), 
+      _id: Date.now().toString(),
       title: input,
       content: content || "No se pudo generar contenido.",
       image: imgUrl,
     };
-    
+
     setSavedLandings((prevLandings) => [newLanding, ...prevLandings]);
 
-    console.log(imgUrl,'imgurl')
+    console.log(imgUrl, "imgurl");
     setImage(imgUrl);
 
     setLoading(false);
   };
 
-  
   // Ahora usarla es más limpio y corto:
   const handleSaveLanding = async () => {
     try {
-     const res = await api.post("/landings", { prompt: input, content: output, image});
-     console.log(res,'res')
+      const res = await api.post("/landings", {
+        prompt: input,
+        content: output,
+        image,
+      });
+      console.log(res, "res");
     } catch (error) {
       console.log("Error al guardar la landing:", error);
     }
