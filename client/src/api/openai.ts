@@ -9,7 +9,7 @@ const openai = new OpenAI({
 export const generateLandingContent = async (prompt: string) => {
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo", // O usa "gpt-4-turbo" si prefieres, pero este es de pago
+      model: "gpt-4-turbo", // O usa "gpt-3.5-turbo" si prefieres, pero este es de pago
       messages: [{ role: "user", content: prompt }],
       max_tokens: 500,
     });
@@ -38,58 +38,42 @@ export const generateImage = async (prompt: string) => {
   }
 };
 
-
-export const generatePostsForIG = async (userPrompt: string, setPosts: any, setLoading: any) => {
-  const prompt = userPrompt.trim() !== "" ? userPrompt : defaultPrompt;
-  setLoading(true);
+export const generatePostsForIG = async (userPrompt: string) => {
+  const prompt = userPrompt.trim() || defaultPrompt;
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`, 
-      },
-      body: JSON.stringify({
-        model: "gpt-4o",
-        messages: [
-          { role: "user", content: defaultPrompt },
-          { role: "user", content: prompt },
-        ],
-        temperature: 0.7,
-      }),
+    const response = await openai.chat.completions.create({
+      model: "gpt-4o",
+      messages: [
+        { role: "user", content: defaultPrompt },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.7,
     });
 
-    const data = await response.json();
-    console.log(data, "data");
-
-    if (!response.ok) throw new Error(data.error?.message || "Error en OpenAI");
-
-    if (data.choices && data.choices.length > 0) {
-      const generatedText = data.choices[0].message.content;
-      let jsonResponse;
-
-      try {
-        let jsonString = generatedText.trim();
-        if (jsonString.startsWith("```json")) {
-          jsonString = jsonString.substring("```json".length).trim();
-          if (jsonString.endsWith("```")) {
-            jsonString = jsonString.substring(0, jsonString.length - 3).trim();
-          }
-        }
-        jsonResponse = JSON.parse(jsonString);
-      } catch (e) {
-        console.error("Error parseando JSON:", e);
-        jsonResponse = { posts: [{ text: generatedText }] };
-      }
-
-      if (jsonResponse.posts && jsonResponse.posts.length > 0) {
-        setPosts(jsonResponse.posts);
-      }
+    // Verificar que hay respuestas y que content no es null o undefined
+    const messageContent = response.choices?.[0]?.message?.content?.trim();
+    if (!messageContent) {
+      throw new Error("No se generó contenido válido desde OpenAI.");
     }
+
+    return parseOpenAIResponse(messageContent);
   } catch (error) {
     console.error("Error generando los posts:", error);
-  } finally {
-    setLoading(false);
+    throw error;
   }
 };
+
+function parseOpenAIResponse(generatedText: string) {
+  try {
+    let jsonString = generatedText.trim();
+    if (jsonString.startsWith("```json")) {
+      jsonString = jsonString.replace(/^```json|```$/g, "").trim();
+    }
+    const jsonResponse = JSON.parse(jsonString);
+    return jsonResponse.posts ?? [{ text: generatedText }];
+  } catch (error) {
+    console.error("Error parseando JSON:", error);
+    return [{ text: generatedText }];
+  }
+}
