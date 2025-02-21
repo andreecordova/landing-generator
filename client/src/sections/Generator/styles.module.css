@@ -14,10 +14,13 @@
     background: none;
     box-shadow: none;
     color: #000;
+    transition: transform 0.5s ease;
 }
 
 .content_generator_button_goback:hover{
     text-decoration: none;
+    opacity: 0.9;
+    color: #000;
 }
 
 .content_generator_button_goback::before{
@@ -32,4 +35,5 @@
     max-height: 40px;
     padding: 8px 12px;
     cursor: pointer;
+    transition: transform 0.5s ease;
 }
